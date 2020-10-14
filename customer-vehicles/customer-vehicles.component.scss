@@ -1,0 +1,83 @@
+@import 'src/assets/scss/index.scss';
+
+.customer-vehicles{
+  .vehicle-actions {
+    display: inline-flex;
+    width: 100%;
+    justify-content: flex-end;
+    margin: 4rem 0 2rem 0;
+  }
+  .container{
+    bottom: 10rem;
+    position: relative;
+    .heading{
+      font-size: 3rem;
+      color: $color-white;
+      margin-bottom: 2rem;
+    }
+  }
+  
+  .vehicles-header{
+    background-image: url('/assets/images/my-vehicles-background@3x.svg');
+    width: 100%;
+    background-size: cover;
+    height: 20rem;
+   
+  }
+  .card{
+    width: 100%;
+  }
+  .vehicles {
+    display: flex;
+    width: calc(100% + 1.5rem);
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-right: -1.5rem;
+    .vehicle {
+      width: calc((100% / 3) - 1.5rem);
+      margin-bottom: 1.5rem;
+      margin-right: 1.5rem;
+      background-color: $color-white;
+      border-radius: .5rem;
+    }
+  }
+  .no-vehicles {
+    display: inline-flex;
+    justify-content: space-around;
+    align-items: $center;
+    height: 20rem;
+    .no-vehicles-div {
+      text-align: $center;
+      .no-vehicles-text {
+        margin-top: 1.5rem;
+        padding-left: 2.5rem; 
+        padding-right: 2.5rem;
+        margin-bottom: 1.5rem;
+      }
+      .card-footer {
+        padding: 13px;
+        // border-top: $primary-button-disabled solid 1px;
+        text-align: $center;
+        padding-bottom: 0px;
+          button{
+            width: 329px;
+          }
+        }
+      }
+    }
+}
+
+@media (max-width: 1099px) {
+  .customer-vehicles .vehicles {
+    .vehicle {
+      width: calc(50% - 1.5rem);
+    }
+  }
+}
+@media (max-width: 850px) {
+  .customer-vehicles .vehicles {
+    .vehicle {
+      width: calc(100% - 1.5rem);
+    }
+  }
+}

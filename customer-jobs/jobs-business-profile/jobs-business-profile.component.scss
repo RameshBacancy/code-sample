@@ -1,0 +1,109 @@
+@import 'src/assets/scss/index';
+.jobs-business-profile{
+    .background {
+        height: 20rem;
+        width: 100%;
+        background-color: $primary-violet;
+        h2 {
+            margin-left: 9rem;
+            color: white;
+            padding: 1rem .3rem .3rem .3rem;
+            font-weight: 500;
+        }
+    }
+    .container{
+        position: relative;
+        bottom: 10rem;
+    }
+    .business-profile{
+        .card{
+            text-align: center;
+            padding: 2.8rem;
+            width: auto;
+            .profile-pic{
+                margin-bottom: 2rem;
+                .business-img{
+                    img{
+                        height: 100px;
+                        width: 100px;
+                        border-radius: 50%;
+                        margin: auto;
+                        background-color: $secondary-violet;
+                    }
+                }
+            }
+            .business-name{
+                margin-bottom: 2rem;
+                font-size: 1.7rem;	
+                font-weight: bold;
+            }
+            .stats{
+                margin-bottom: 2rem;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                .heading{
+                    font-size: 2.5rem;	
+                    font-weight: bold;
+                    margin-bottom: 2rem;
+                }
+                .content{
+                    margin-bottom: 2rem;
+                }
+            }
+            .rating-section {
+                margin: 1.5rem 0px;
+                .rating-point { text-decoration: underline; color: $primary-green; margin-left: 5px;}
+            }
+            .other-info{
+                text-align: left;
+                .heading{
+                    margin-bottom: .7rem;
+                    font-weight: 500;
+                }
+                .content{
+                    margin-bottom: 1.5rem;
+                }
+
+                .service {
+                    margin-bottom: 1rem;
+                }
+            }
+            .total{
+                margin-top: 1.5rem;
+                margin-bottom: 2rem;
+                display: flex;
+                justify-content: space-between;
+                font-size: 1.7rem;	
+                font-weight: bold;
+            }
+            .action{
+                display: flex;
+                justify-content: space-around;
+            }
+            .contact{
+                display: flex;
+                padding: 2rem;
+                .text{
+                    font-size: 1.5rem;
+                    font-weight: bold;
+                }
+                .hours{
+                    display: flex;
+                    width: 250px;
+                    flex-direction: column;
+                    .each{
+                        padding: 1.5rem;
+                        display: inline-flex;
+                        justify-content: space-between;
+                    }
+                    .each:first-child{
+                        padding-top:0;
+                    }
+                }
+            }
+        }
+        
+    }
+    
+}

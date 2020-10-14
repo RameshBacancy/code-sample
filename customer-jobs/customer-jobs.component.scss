@@ -1,0 +1,227 @@
+@import 'src/assets/scss/index';
+.customer-jobs{
+  .jobs-actions {
+    display: inline-flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    .input-basic .mainbox{
+      margin-bottom: 0;
+    }
+    .search-jobs {
+      display: inline-flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+      .add-job-btn {
+        margin-left: 20px;
+      }
+    }
+  }
+  .card{
+    width: 100%;
+  }
+  
+  .jobs-table {
+    margin-top: 30px;
+    .primary.custom{
+      background-color: $color-white;
+      border: 1px solid $primary-violet;
+      color: $primary-violet;
+      padding: 0;
+      height: 35px;
+      padding: 10px;
+  }
+  .header {
+    div {
+      justify-content: center
+    }
+  }
+  .text-center {
+    text-align: center
+  }
+    .service-type {
+      display: inline-flex;
+      align-items: center;
+      margin: 10px 0;
+      .service-type-icon-container {
+        height: 34px;
+        width: 34px;
+        border-radius: 18px;
+        border: 1px solid $tertiary-blue;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        .setting-icon {
+          width: 13px;
+          height: 13px;
+        }
+        .car-icon {
+          width: 16px;
+          height: 16px;
+        }
+      }
+      .service-type-info {
+        margin-left: 10px;
+        .service-type-text {
+          font-size: 18px;	
+          font-weight: 500;
+          margin-bottom: 4px;
+        }
+      }
+    }
+    .status-col {
+      display: inline-flex;
+      align-items: center;
+      margin-top: -2px;
+      .common {
+        border-radius: 12px;
+        padding: .3em .7em .2em .7em;
+        font-size: 11px;
+        min-width: 70px;
+        text-align: center;
+        font-weight: 500;
+      }
+      .open {
+        background-color: $primary-green;
+      }
+      .closed {
+        background-color: $tertiary-blue;
+      }
+    }
+  }
+  
+  .vehicle-actions {
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: $center;
+    margin-bottom: 20px;
+    .search-vehicles {
+      display: inline-flex;
+      .add-vehicle-btn {
+        margin-left: 20px;
+      }
+    }
+  }
+  .vehicles {
+    display: flex;
+    width: calc(100% + 20px);
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-right: -20px;
+    .vehicle {
+      width: calc((100% / 3) - 20px);
+      margin-bottom: 20px;
+      margin-right: 20px;
+    }
+  }
+  .no-vehicles {
+    display: inline-flex;
+    justify-content: space-around;
+    align-items: $center;
+    height: 300px;
+    .no-vehicles-div {
+      text-align: $center;
+      .no-vehicles-text {
+        margin-top: 20px;
+        padding-left: 35px; padding-right: 35px;
+        margin-bottom: 20px
+      }
+      .card-footer {
+        padding: 13px;
+        border-top: $primary-button-disabled solid 1px;
+        text-align: $center;
+        padding-bottom: 0px;
+        button{
+          width: 329px;
+        }
+      }
+    }
+  }
+  
+  .pill-box {
+    height: 48px;
+    border: 1px solid $primary-button-disabled;
+    border-radius: 8px;
+    background-color: white;
+    display: inline-flex;
+    justify-content: space-between;
+    .option {
+      display: inline-flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 100%;
+      height: 38px;
+      padding: 0 12px;
+      margin: 4px 0 5px 5px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      color: $primary-blue;
+      white-space: nowrap;
+      cursor: pointer;
+      @include notHighlightable();
+      font-weight: 500;
+      &.selected {
+        background-color: $primary-violet;
+        border: 1px solid $primary-violet;
+        color: white;
+      }
+      &.last {
+        margin-right: 5px;
+      }
+    }
+    &.error-box {
+      border-color: $error !important;
+    }
+  }
+  .mat-sort-header-button {
+    font-size: 16px;
+  }
+  
+   tr.mat-footer-row, tr.mat-row{ 
+    height: 70px !important;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 1099px) {
+  .customer-jobs .vehicles {
+    .vehicle {
+      width: calc(50% - 20px);
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .customer-jobs .jobs-actions {
+    display: block;
+    margin-top: 20px; 
+    .pill-box{
+      display: flex;
+      margin: 20px 0;
+    }
+  }
+  .jobs-table{
+    width: 100%;
+    overflow-x: scroll;
+  }
+}
+
+@media (max-width: 500px) {
+  .customer-jobs .jobs-actions {
+    .search-jobs {
+      display: inline-flex;
+      width: 100%;
+      .add-job-btn {
+        margin-left: 0px;
+      }
+    }
+  }
+}
+
+
+
+

@@ -1,0 +1,100 @@
+<div class="jobs-business-profile">
+  <app-cover-photo *ngIf="quote" [coverPhotoId]="quote.business['coverPhotoId']" [userId]="quote['businessId']" userType="business" [isEditable]="false"></app-cover-photo>
+  <div class="container business-profile" *ngIf="quote">
+    <app-go-back></app-go-back>
+    <div class="row">
+      <div class="col col-4 col-sm-12 col-xs-12">
+        <div class="card">
+          <div class="profile-pic">
+            <div class="business-img">
+              <img [appLoadImage]="quote.business.imageId" alt="">
+            </div>
+          </div>
+          <div class="business-name">
+            {{quote.business.businessName}}
+          </div>
+          <div class="stats">
+            <div>
+              <div class="heading">
+                <!-- {{quote.business.numberOfEmployees}} -->
+                {{quote.business.fixedOrMobile}}
+              </div>
+              <!-- <div class="content">
+                Employees
+              </div> -->
+            </div>
+            <!-- <div>
+              <div class="heading">
+                21st
+              </div>
+              <div class="content">
+                Ranking out of 300
+              </div>
+            </div> -->
+          </div>
+          <!-- <div class="rating-section">
+            <app-rating-stars [float]="true" readonly="true" value=4.5>
+            </app-rating-stars>
+            <span class="rating-point">12</span>
+          </div> -->
+          <div class="other-info">
+            <div class="heading">
+              DISTANCE FROM YOU
+            </div>
+            <div class="content">
+              <span *ngIf="distanceFromYou !== null">{{distanceFromYou}}Km</span>
+              <span *ngIf="!user.homeAddress || !user.homeAddress.lat">"Update your location in My Profile to calculate the distance"</span>
+            </div>
+            <div class="comment-container" *ngIf="quote.additionalComments">
+              <div class="heading">
+                COMMENTS FROM BUSINESS
+              </div>
+              <div class="content">
+                {{quote.additionalComments}}
+              </div>
+            </div>
+
+            <div class="additional-services" *ngIf="quote.additionalServices.length">
+              <div class="heading">
+                ADDITIONAL SERVICES
+              </div>
+              <div class="service" *ngFor="let service of quote.additionalServices">{{service.name}}</div>
+            </div>
+            
+            <div class="total">
+              <div>Total</div>
+              <div>${{quote.estimatedAmount}}</div>
+            </div>
+            <div class="action">
+              <button class="primary" (click)="initiatePayment()" *ngIf="quote.status == 'awaiting' || quote.status === 'payment_failed'">
+                ACCEPT
+              </button>
+              <button class="secondary" (click)="openRejectModal = true" *ngIf="quote.status == 'awaiting' || quote.status === 'payment_failed'">
+                REJECT
+              </button>
+              <!-- <button class="primary" (click)="initiatePayment()" *ngIf="quote.status === 'accepted' && !quote.paymentSuccessful">
+                INITIATE PAYMENT
+              </button> -->
+              <button class="primary custom" *ngIf="quote.status === 'completed' && !quote.paymentSuccessful && quote.tender.status!== 'reviewed'"
+                (click)="openReviewModal()">Submit Review</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col col-8 col-sm-12 col-xs-12">
+        <app-business-profile-basic [profileId]="businessProfileId" *ngIf="businessProfileId">
+        </app-business-profile-basic>
+      </div>
+    </div>
+  </div>
+</div>
+<app-customer-review [open]="jobRevieweModalOpen" (submitReview)="submitReview($event)"
+        (close)="jobRevieweModalOpen = false">
+      </app-customer-review>
+
+<!-- <app-tender-accept-reason [open]="openAcceptModal"  *ngIf="quote" (close)="openAcceptModal = false" [modalTitle]="quote.business.businessName"
+  (acceptQuote)="acceptQuote($event)">
+</app-tender-accept-reason> -->
+<app-tender-reject-reason [open]="openRejectModal"  *ngIf="quote" (close)="openRejectModal = false" [modalTitle]="quote.business.businessName"
+  (rejectQuote)="rejectQuote($event)">
+</app-tender-reject-reason>

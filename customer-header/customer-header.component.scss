@@ -1,0 +1,223 @@
+@import 'src/assets/scss/index.scss';
+
+.customers-header{
+  .customer-header-fill {
+    height: 68px;
+  }
+  .customer-header {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    border-top: 1px solid $grey-light;
+    border-bottom: 1px solid $grey-light;
+    .left-side {
+      padding-left: 2rem;
+      display: flex;
+      .logo {
+        cursor: pointer;
+      }
+    }
+    .right-side {
+      display: inline-flex;
+      justify-content: flex-end;
+      align-items: center;
+      .menu-link {
+        margin: 0 1.4rem;
+        cursor: pointer;
+        font-weight: 500;
+        white-space: nowrap;
+        outline: none;
+        @include notHighlightable();
+        .mobile{
+          display: none;
+        }
+        .desktop{
+          display: block;
+        }
+      }
+      .menu-link.active { color:#009AE0;}
+      .communications {
+        border-left: 1px solid $grey-light;
+        cursor: pointer;
+        &:hover {
+          background-color: $background-grey;
+        }
+        .communications-icon {
+          margin: 2rem;
+          height: 1.7rem;
+          width: 1.7rem;
+        }
+      }
+      .notifications {
+        border-left: 1px solid $grey-light;
+        position: relative;
+        cursor: pointer;
+        .number{
+          position: absolute;
+          background: #d0021a;
+          border-radius: 50%;
+          top: 1rem;
+          padding: .15rem 0.5rem;
+          color: white;
+          text-align: center;
+          right: 1rem;
+          width: auto;
+          height: auto;
+        }
+        &:hover {
+          background-color: $background-grey;
+        }
+        .notifications-icon {
+          margin: 2rem;
+          height: 1.7rem;
+          width: 1.7rem;
+        }
+        .card-position {
+          right: 0;
+        }
+      }
+      .customer-menu {
+        border-left: 1px solid $grey-light;
+        .pic {
+          margin: 1.3rem 1rem;
+            height: 3.5rem;
+            width: 3.5rem;
+            border-radius: 50%;
+            background-color: $secondary-violet;
+          img {
+            height: inherit;
+            width: inherit;
+            border-radius: inherit;
+            background-color: inherit;
+          }
+        }
+      }
+    }
+  }
+  .customer-menu {
+    .customer-dropdown {
+      position: absolute;
+      right: .8rem;
+      width: 9rem;
+      height: auto;
+      background: #fff ;
+      box-shadow: 0px 0px 11px 0px rgba(0,0,0,0.1);
+      border-radius: 4px;
+      ul {
+        padding: 0px;
+        li {
+          list-style-type: none;
+          padding: .5rem 1rem;
+          a {
+            color: #192C3F;
+            text-decoration: none
+          }
+        }
+        li:hover {
+         background: darken(#F5F7FA, 1%);
+        }
+      }
+      &:before {
+        position: absolute;
+        right: 1.8rem;
+        top: -.9rem;
+        content: "";
+        width: 0px;
+        height: 0px;
+        border-left: .8rem solid transparent;
+        border-right: .8rem solid transparent;
+        border-bottom: .8rem solid #efefef;
+      }
+  
+      &:after {
+        position: absolute;
+        right: 2rem;
+        top: -.7rem;
+        content: "";
+        width: 0px;
+        height: 0px;
+        border-left: .8rem solid transparent;
+        border-right: .8rem solid transparent;
+        border-bottom: .8rem solid #fff;
+      }
+    }
+    
+  }
+  
+  
+          .chat {
+        border-left: 1px solid $primary-light-gray;
+        position: relative;
+        cursor: pointer;
+        &:hover {
+          // background-color: $background-grey;
+        }
+        .chat-icon {
+          margin: 2rem;
+          height: 1.8rem;
+          width: 1.8rem;
+        }
+        .number{
+          position: absolute;
+          background: #d0021a;
+          border-radius: 50%;
+          top: 1rem;
+          padding: .15rem 0.5rem;
+          color: white;
+          text-align: center;
+          right: 1rem;
+          width: auto;
+          height: auto;
+        }
+      }
+  
+  
+   .card-position {
+      position: absolute;
+      width: 20rem;
+      right: 0;
+    }
+}
+
+@media (max-width: 600px) {
+  .left-side{
+    padding-left: 1rem !important;
+  }
+  .right-side {
+    .menu-link{
+      margin: 0 !important;
+    border-left: 1px solid #d0d8e8;
+    }
+  }
+  .mobile{
+    margin: 2rem 1rem !important;
+    display: block !important;
+  }
+  .desktop{
+    display: none !important;
+  }
+}
+
+@media(max-width: 500px) {
+  .customer-header{
+    .chat, .notifications{
+      img{
+        margin: 2rem 1rem !important;
+      }
+    }
+    .logo{
+      width: 5.5rem;
+    }
+  }
+}
+
+:host ::ng-deep .model-overflow{
+   .modal-panel { overflow: hidden}
+   .modal-content { padding: 15px}
+ }

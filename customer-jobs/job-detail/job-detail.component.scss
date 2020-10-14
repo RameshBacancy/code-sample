@@ -1,0 +1,167 @@
+@import 'src/assets/scss/index';
+
+.job-detail{
+    .tender-header{
+        background-image: url('/assets/images/my-vehicles-background@3x.svg');
+        width: 100%;
+        background-size: cover;
+        height: 300px;
+    }
+    
+    .tender{
+        position: relative;
+        bottom: 150px;
+        h5{
+            padding-bottom: 1.5rem;
+        }
+        .card{
+            width:auto;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            .tender-title{
+                margin: 1.5rem 0 3rem 0;
+                font-size: 24px;	
+                font-weight: bold;
+                line-height: 3rem;
+            }
+        }
+        .detail{
+            display: flex;
+            flex-wrap: wrap;
+            .user-img {
+                // display: inline-flex;
+                margin: 0 1.4rem 1rem 0;
+                // margin-right: 1rem;
+                height: 4.12rem;
+                width: 4.12rem;
+                border-radius: 50%;
+                background-color: $secondary-violet;
+                img{
+                    height: inherit;
+                    width: inherit;
+                    border-radius: inherit;
+                    background-color: inherit;
+                    // margin-right: 10px;
+                    // width: 66px;
+                    // height: 66px;
+                    // display: inline-block;
+                    // border-radius: 50%;
+                } 
+              }
+            .customer{
+                padding-bottom: 1.5rem;
+                margin-right: 1.5rem;
+                width: 200px;
+                .name{
+                    font-size: 21px;	
+                    font-weight: bold;
+                }
+                .description{
+                    .description-item {
+                        display: flex;
+                        align-items: center;
+                        margin-bottom: 1rem;
+                
+                        .icon {
+                          margin-right: 15px;
+                        }
+                
+                        .content {
+                          color: $grey-darkest;
+                          font-size: 16px;
+                          font-weight: 300;
+                          line-height: 18px;
+                          margin-right: 1rem;
+                        }
+                    }
+                }
+
+                .vehicle{
+                    font-size: 14px;	
+                    font-weight: 300;
+                }
+                > div{
+                    padding-bottom: 1.5rem;
+                }
+            }
+            .tender-info{
+                font-size: 1rem;	
+                font-weight: 300;
+                padding-bottom: 1.5rem;
+                margin-right: 1.5rem;
+                margin-left: 4.5rem;
+                width: 200px;
+                .item{
+                    display: flex;
+                    padding-bottom: 1.5rem;
+                    > div{
+                        padding-left: 1.5rem;
+                    }
+                }
+            }
+            .tender-description{
+                margin-right: 1.5rem;
+                font-size: 14px;	
+                width: 400px;
+                .heading{
+                    padding-bottom: 5px;
+                    font-weight: 500;
+                }
+                .content{
+                    font-weight: 300;
+                    margin-bottom: 1.5rem;
+                }
+            }
+        }
+        .map{
+            padding: 0 !important;
+            agm-map{
+                height: 320px;
+            }
+
+        }
+    
+        .quotes{
+            overflow: auto;
+            padding: 2rem 0 0 0 !important;
+            .tender-title{
+                padding-left: 24px;
+            }
+            .primary.custom{
+                background-color: $color-white;
+                border: 1px solid $primary-violet;
+                color: $primary-violet;
+                padding: 0;
+                height: 2.5rem;
+                padding: .7rem;
+            }
+        }
+        
+    }
+     tr.mat-footer-row, tr.mat-row{
+        height: 5rem !important;
+        cursor: pointer;
+    }
+}
+
+// @media (max-width: 930px) {
+//     .tender{
+//         .card {
+//             padding: 30px;
+//             .detail{
+//                 display: flex;
+//                 flex-direction: column;
+//                 .customer{
+//                 }
+//                 .tender-info{
+//                 }
+//                 .tender-description{
+//                 }
+//             }
+//         }
+        
+//     }
+// }
+.agm-label-marker {
+    padding: 5rem;
+}

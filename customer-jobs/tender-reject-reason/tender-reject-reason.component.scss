@@ -1,0 +1,120 @@
+@import "src/assets/scss/index";
+
+.modal-panel-shade {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 10;
+
+  .modal-panel {
+    background-color: white;
+    border-radius: 8px;
+
+    .modal-content {
+      max-height: calc(100vh - 80px);
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 2rem;
+
+      .heading-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: $grey-darkest;
+        font-family: Montserrat;
+        font-size: 1.715rem;
+        font-weight: bold;
+        line-height: 2.145rem;
+
+        .main-title {
+          padding-top: 1.29rem
+        }
+
+        .sub-title {
+          padding-top: 1.14rem;
+        }
+      }
+
+      .badges {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 3.5rem;
+
+        .badge {
+          width: 22%;
+          .badge-img {
+            max-width: 10rem;
+            max-height: 10rem;;
+            cursor: pointer;
+            position: relative;
+
+            img {
+              width: 100%;
+            }
+
+            .selected {
+              width: 30px;
+              height: 30px;
+              position: absolute;
+              bottom: 0;
+              right: 12px;
+            }
+          }
+
+          .sub-text {
+            text-align: center;
+            padding-top: 2.147rem;
+            color: $grey-darkest;
+            font-family: Montserrat;
+            font-size: 1.715rem;
+            font-weight: bold;
+            line-height: 2.145rem;
+          }
+        }
+      }
+
+      .action {
+        text-align: center;
+        color: $grey-darkest;
+        font-size: 1.715rem;
+        font-weight: bold;
+        padding: 2rem;
+        cursor: pointer;
+      }
+
+      .input-form {
+        margin: 10% !important;
+        width: 100%;
+      }
+
+
+      .actions {
+        padding-top: 2.57rem;
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+
+  &.open {
+    display: flex;
+  }
+
+  .btn-outline {
+    background-color: white;
+    border: 3px solid #685DF6;
+    border-radius: 25px;
+    margin-left: 5%;
+    height: 50px !important;
+    width: 124px !important;
+    margin-bottom: 20%;
+    cursor: pointer;
+  }
+}

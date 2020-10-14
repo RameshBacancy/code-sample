@@ -1,0 +1,100 @@
+<div class="container customer-jobs">
+  <div class="jobs-actions">
+    <h2 class="my-jobs-header">My jobs</h2>
+    <div class="pill-box pill-selector">
+      <div *ngFor="let opt of statusOptions; let last = last;" [class.last]="last"
+        [class.selected]="filterFC.value === opt.value" class="option" (click)="filterTender(opt.value)">{{opt.name}}
+      </div>
+      <app-customer-review [open]="jobRevieweModalOpen" (submitReview)="submitReview($event)"
+        (close)="jobRevieweModalOpen = false">
+      </app-customer-review>
+    </div>
+    <div class="search-jobs">
+      <app-input-basic [fc]="searchFC" placeholder="Search jobs" icon="search-violet" marginBottom="0">
+      </app-input-basic>
+      <button class="primary add-job-btn" (click)="addNewJob()">Book in for a service</button>
+    </div>
+  </div>
+  <div class="jobs-table" [hidden]="!dataLength">
+    <table mat-table matSort [dataSource]="dataSource" [hidden]="!dataLength">
+      <ng-container matColumnDef="serviceType">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Job Details</th>
+        <td mat-cell *matCellDef="let element">
+          <div class="service-type">
+            <div class="service-type-icon-container">
+              <img *ngIf="['Logbook service', 'Basic', 'Other'].indexOf(element.serviceType) !== -1"
+                class="setting-icon" src="assets/icons/spanner.png" alt="">
+              <img *ngIf="element.serviceType === 'Body Work'" class="car-icon" src="assets/icons/car-violet.svg" alt="">
+            </div>
+            <div class="service-type-info">
+              <div class="service-type-text">{{element.serviceType === 'Other' ? element.otherService : element.serviceType}}</div>
+              <div>{{element.vehicle}}</div>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="mechanic">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="header">Mechanic</th>
+        <td mat-cell *matCellDef="let element" class="text-center">Douglas Gardner</td>
+      </ng-container>
+      <ng-container matColumnDef="location">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="header">Location</th>
+        <td mat-cell *matCellDef="let element" class="text-center">{{element.address.city}}</td>
+      </ng-container>
+      <ng-container matColumnDef="dateRequired">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="header">Date Required</th>
+        <td mat-cell *matCellDef="let element" class="text-center">
+          <span *ngIf="element.timeframe === 'certainDate'">{{element.requestedTime | date:'dd/MM/yyyy'}}</span>
+          <span *ngIf="element.timeframe !== 'certainDate'">{{element.timeframe === 'flexible' ? 'Flexible' : element.timeframe.toUpperCase()}}</span>
+        </td>
+      </ng-container>
+
+      <!-- <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+        <td mat-cell *matCellDef="let element">
+          <div class="status-col">
+            <div class="common">
+              {{element.status.toUpperCase()}}
+            </div>
+          </div>
+        </td> 
+      </ng-container> -->
+      <ng-container matColumnDef="submissions">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="header">Submissions</th>
+        <td mat-cell *matCellDef="let element" class="text-center">{{element.numberOfQuotes}}</td>
+      </ng-container>
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="header">Action</th>
+        <td mat-cell *matCellDef="let element" class="text-center">
+          <button class="primary custom" *ngIf="element.status === 'completed'"
+            (click)="openReviewModal(element, $event)">Submit Review</button>
+          <button class="primary custom" *ngIf="element.tenderClosed && element.status === 'open'"
+            (click)="openRenewModal(element, $event)">Renew</button>
+          <button class="primary custom" *ngIf="element.status === 'open' || (element.status === 'booked' && !element.markCompletedByClient)"
+          (click)="cancelTender(element, $event)">Cancel</button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index;" class="clickable"
+        [class.selected]="selectedRowIndex === i" (click)="selectRow(row, i)"></tr>
+    </table>
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100, 200]" showFirstLastButtons [hidden]="dataLength">
+    </mat-paginator>
+  </div>
+  <div *ngIf="!dataLength" class="no-vehicles card">
+    <div class="no-vehicles-div">
+      <!-- <img src="assets/images/my_jobs.png" alt=""> -->
+      <div class="no-vehicles-text">You currently don't have any upcoming jobs</div>
+      <button class="primary add-job-btn" (click)="addNewJob()">Book in for a service</button>
+    </div>
+  </div>
+</div>
+
+<app-renew-tender *ngIf="selectedTender" [renewModalOpen]="renewModalOpen" (close)="closeRenewModal($event)" [tender]="selectedTender"></app-renew-tender>
+
+<app-confirm-modal [customerJobFlag]="openSuccesModal" [confirmModalOpen]="openSuccesModal" (close)="openSuccesModal = false" >
+  <div rx-error>Success</div>
+</app-confirm-modal>
+
+<app-cancel-modal [CustomerJobId]="cancelTenderId" [cancelTenderOpen]="cancelTenderOpen" (close)="cancelTenderModal()"></app-cancel-modal>
+

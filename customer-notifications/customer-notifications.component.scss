@@ -1,0 +1,66 @@
+@import 'src/assets/scss/index';
+
+.customer-notifications.card{
+    .card-header{ padding: 20px; background: $background-grey;
+        p { font-weight: 300;}
+        }
+        .card-footer{
+            padding: 20px; text-align: $center; 
+            .view-link { color: $secondary-blue; text-decoration: $none; font-size: $fontsize-14; font-weight: $font-weight-600; }
+        }
+        .user-notification-list {
+            max-height: 440px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            ul{
+                margin: 0px; padding: 0px;
+                li{
+                    list-style: $none;
+                    a{
+                        padding:20px;
+                        position: relative;
+                        cursor: pointer;
+                        text-decoration: $none;
+                        @include box-sizing (border-box);
+                        width: 100%;
+                        display: inline-flex;
+                        align-items: $center;
+                        border-bottom: #D0D8E8 solid 1px;
+                        .user-heading-text{
+                            width: 100%; display: block;
+                        h3{
+                            color: $grey-darkest;
+                            font-size: $fontsize-18;
+                            display: block;
+                            text-decoration: $none;
+                            font-weight: $font-weight-600;
+                            margin-bottom: 10px;
+                        }
+                        p{display: block; font-weight: $font-weight-300; font-size:$fontsize-14; color: $grey-darkest;}
+                      }
+                        img.userimg{
+                            width: 55px; height: 55px; @include border-radius(50%);
+                            margin-right: 15px;
+                        }
+                    }
+                    &:hover {
+                        background:#E1E6F1;
+                        width: 100%;
+                        display: inline-flex;
+                    }
+                    &.active {
+                        background:#E1E6F1;
+                        width: 100%;
+                        display: inline-flex;
+                    }
+                    &.unread {
+                        background:#EAEDF5;
+                        width: 100%;
+                        display: inline-flex;
+                    }
+                }
+                li:last-child { border-bottom: none;}
+            }
+        }
+}
+

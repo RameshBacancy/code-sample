@@ -1,0 +1,15 @@
+@import 'src/assets/scss/index';
+
+.customer-chat{
+	.left-message-block { 
+		padding-right:0px; 
+	}
+	 .person-pic 
+	 {
+				width: 55px;
+				height: 55px;
+				border-radius: 50px;
+	}
+	.form-contol { padding: 15px 0px;}
+	  .chat-input .input{ margin-left: 20px; }
+}

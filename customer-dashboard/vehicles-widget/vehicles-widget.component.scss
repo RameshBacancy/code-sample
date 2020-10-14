@@ -1,0 +1,45 @@
+@import 'src/assets/scss/index';
+.card.vehicle-widget {
+	min-height: 18rem; 
+	.card-header {
+		padding: 1rem;
+		text-align: $center;
+		h3 {
+			color: $grey-darkest;
+			font-size: $fontsize-18;
+			font-weight:$font-weight-600;
+		}
+	}
+	.content {
+		text-align: $center; 
+		img {
+			margin: 1.5rem 0px;
+		}
+		.not-found{
+			padding: 2rem 0;
+			color: $grey-darkest;
+			font-size: $fontsize-14;
+			font-weight: $font-weight-300;
+			margin-bottom:1.5rem;
+			margin-top: .8rem;
+		}
+		ul.vehicleslist{
+			margin: 0px; padding: 0px;
+			li {list-style: none; border-bottom: $grey-light solid 1px; padding: 1rem 3rem 1rem 2.2rem; background-image: imagepath('icons/arrow-right.svg');  background-repeat:no-repeat;
+				text-align: $left; background-position: center right 2.1rem; cursor: pointer;
+			h3 { color:$grey-darkest; font-size: $fontsize-16; font-weight: $font-weight-500;}
+			p{ color:$grey-darkest; font-weight: $font-weight-300; font-size: $fontsize-14; margin-bottom: 0px;}
+			}
+		}
+	}
+	.card-footer {
+		padding: 1rem;
+		text-align: $center;
+		a { color: $secondary-blue; font-size: $fontsize-14; font-weight: $font-weight-500; text-decoration: none;}
+		button {
+			@include border-radius(1.7rem);
+			width: $lg-button;
+		}
+	}
+	.min-height {min-height: 244px;}
+}

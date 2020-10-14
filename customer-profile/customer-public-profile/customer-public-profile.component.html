@@ -1,0 +1,114 @@
+<div class="container customer-public-profile">
+  <div class="row">
+    <div class="col col-4">
+      <div class="card" *ngIf="customerPublicProfile">
+        <div class="card-header">
+          <img [appLoadImage]="customerPublicProfile.imageId" alt="">
+          <h2>{{ customerPublicProfile.customerFname }} {{ customerPublicProfile.customerLname }}</h2>
+        </div>
+        <div class="rating-section">
+          <app-rating-stars [float]="true" readonly="true" value=4.5>
+          </app-rating-stars>
+          <span class="rating-point">{{ customerPublicProfile.customerReviews.length }}</span>
+        </div>
+        <div class="card-content">
+          <div class="list">
+            <ul>
+              <li>
+                <div class="icon">
+                  <img
+                    [src]="customerPublicProfile.customerVerified ? '/assets/icons/check-circle-blue.svg' : '/assets/icons/tick-fail.svg'" />
+                </div>
+                Verified
+              </li>
+              <li>
+                <div class="icon">
+                  <img
+                    [src]="customerPublicProfile.customerContactDetailsVerified ? '/assets/icons/check-circle-blue.svg' : '/assets/icons/tick-fail.svg'" />
+                </div>
+                Contact Details
+              </li>
+              <li>
+                <div class="icon">
+                  <img
+                    [src]="customerPublicProfile.customerPaymentDetailsVerified ? '/assets/icons/check-circle-blue.svg' : '/assets/icons/tick-fail.svg'" />
+                </div>
+                Payment Details
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col col-7 pull-right right-section" *ngIf="customerPublicProfile">
+      <div class="card card-bottom-space">
+        <div class="card-header">
+          <h2>{{customerPublicProfile.customerReviews.length}} Reviews
+            <div class="ratingblock">
+              <app-rating-stars [float]="true" readonly="true" value=4.5>
+              </app-rating-stars>
+            </div>
+          </h2>
+        </div>
+        <div class="card-content">
+          <ul class="user-list" *ngIf="customerPublicProfile">
+            <ng-container *ngFor="let review of customerPublicProfile.customerReviews; let i=index">
+              <li *ngIf="i<maxRecordToDisplay">
+                <img class="user-pic" [src]="review.profilePic" alt="">
+                <div class="profile-content">
+                  <h3>
+                    {{review.customerFname}} {{review.customerLname}}
+                  </h3>
+                  <div class="date">{{review.profileDate}} </div>
+                  <div class="ratingblock">
+                      <app-rating-stars [float]="true" readonly="true" value={{review.rating}}>
+                      </app-rating-stars>
+                    </div>
+                  <!-- <div class="rating">{{}}</div> -->
+                  <p>
+                    {{review.review}}
+                    <span class="viewmore">
+                      <span>....</span><a routerLinkActive="active" routerLink="">View more</a>
+                    </span>
+                  </p>
+                </div>
+              </li>
+            </ng-container>
+          </ul>
+        </div>
+        <div class="card-footer">
+          <div class="t-center"><a routerLinkActive="active" routerLink="" class="view-link review">View all
+              Review</a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <h3>Open tenders</h3>
+        </div>
+        <div class="card-content">
+          <ul class="user-list">
+            <li>
+              <div class="quote-text">
+                <h2>3</h2>
+                <span>Quotes</span>
+              </div>
+              <div class="profile-content">
+                <h4>
+                  Victoria Edwards
+                </h4>
+                <p>
+                  NSW 2016
+                </p>
+                <a routerLinkActive="active" routerLink="" class="col arrow-right">
+                  <img alt="" src="/assets/icons/arrow-right.svg">
+                </a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

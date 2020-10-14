@@ -1,0 +1,42 @@
+<div class="card customer-notifications">
+    <div class="card-header" *ngIf="showUnreadNotification && totalUnreadNotification">
+      <p>{{totalUnreadNotification}} ALERTS</p>
+    </div>
+    <div class="user-notification-list">
+      <ul>
+          <div>
+            <li>
+              <a class="active">
+                <img src="assets/icons/baseline-color-fill-violet.svg" alt="" class="userimg">
+                <div class="user-heading-text">
+                  <h3>
+                    Creating your operating expense profile
+                  </h3>
+                  <p>
+                    This is key information that is required to build a picture around the true costs of business operation...
+                  </p>
+                </div>
+              </a>
+          </li>
+        </div>
+        <div>
+            <li>
+              <a class="active">
+                <img src="assets/icons/baseline-color-fill-violet.svg" alt="" class="userimg">
+                <div class="user-heading-text">
+                  <h3>
+                    Creating your operating expense profile
+                  </h3>
+                  <p>
+                    This is key information that is required to build a picture around the true costs of business operation...
+                  </p>
+                </div>
+              </a>
+          </li>
+        </div>
+      </ul>
+    </div>
+    <div class="card-footer" *ngIf="showUnreadNotification">
+      <a class="view-link" routerLinkActive="active" routerLink="/customer-portal/dashboard">View all notifications</a>
+    </div>
+  </div>

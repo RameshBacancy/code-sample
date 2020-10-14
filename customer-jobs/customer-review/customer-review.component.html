@@ -1,0 +1,48 @@
+<div class="modal-panel-shade customer-review" [class.open]="open">
+  <div class="modal-panel" [style.min-width]="minWidth" [style.min-height]="minHeight">
+    <div class="modal-content">
+      <ng-content></ng-content>
+      <form [formGroup]="userDetailsFG">
+        <app-input-basic label="Summarise your experience" [fc]="userDetailsFG.get('summary')"
+          placeholder="140 characters left" name="founded" icon="short-text">
+        </app-input-basic>
+
+        <p *ngIf="!showDescription" class="review-more" (click)="showDescription= true">Review More</p>
+
+        <app-textaria-basic *ngIf="showDescription" label="Describe your experience" placeholder="" type="text"
+          class="custom-textarea" formControlName="description" [rows]="4" [cols]="50" [group]="userDetailsFG"
+          name="description">
+        </app-textaria-basic>
+
+        <app-rating-stars class="violet-bg-star" label="Rate Your Experience" [float]="true"
+          (onClick)="handleRating($event)" formControlName="rating">
+        </app-rating-stars>
+
+        <div class="badges-container">
+          <label class="label">Leave a Badge</label>
+          <div class="badges">
+            <ng-container *ngFor="let data of badges">
+              <div class="badge">
+                <div class="badge-img" (click)="handleBadgeClick(data.label)">
+                  <img [src]="data.img" [alt]="data.label" />
+                  <img *ngIf="data.selected" class="selected" src="assets/icons/check-circle.svg" alt="selected" />
+                </div>
+                <span>{{ data.label }} </span>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+
+        <div class="actions">
+            <button (click)="handleClose()" type="submit" class="btn-outline">
+                Cancel
+              </button>
+          <button type="submit" class="primary post-tender-btn" (click)="handleSubmit()">
+            Submit
+          </button>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

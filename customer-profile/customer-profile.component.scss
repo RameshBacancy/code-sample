@@ -1,0 +1,138 @@
+@import 'src/assets/scss/index';
+
+.customer-portal-profile{
+  .customer-profile-actions {
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: $center;
+    margin-bottom: 20px;
+  }
+  .card {
+      .card-header 
+      {
+      padding: 15px;
+      text-align: $center;
+          // img { width: 120px; height: 120px; @include border-radius(50%); margin-bottom: 10px;}
+      }
+      .profile-image-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .image-wrap {
+          position: relative;
+          .profile-image {
+            width: 120px; height: 120px; @include border-radius(50%); margin-bottom: 10px;
+          }
+          .edit-icon-wrap {
+            position: absolute;
+            background-color: #EBEBEB;
+            width: 24px;
+            height: 23px;
+            border-radius: 50%;
+            padding: 5px;
+            bottom: 15px;
+            right: 0;
+            cursor: pointer;
+            .edit-icon-img {
+              width: 25px;
+              border-radius: 50%;
+            }
+          }
+          
+        }
+      }
+      .rating-section 
+      {
+      border-top: $grey-light solid 1px;
+      border-bottom: $grey-light solid 1px;
+      padding: 10px 15px;
+      margin: 0px 0px;
+      .rating-point { text-decoration: underline; color: $primary-green; margin-left: 5px;}
+          .rating-summary { float: $right; font-size: 11px; color: $grey-darkest; font-style: italic; font-weight: $font-weight-300;}
+      }
+      .card-content{
+          padding: 15px;
+          .list { display: block;
+          ul 
+          {
+              margin: 0px; padding: 0px;
+              li{ list-style: $none; margin: 5px 0px; width: 100%;
+                  display: inline-flex; align-items: center;
+              .icon { width: 24px; height: 24px; margin-right: 15px;}
+              }
+          }
+       }
+      }
+      .submit{
+        display: flex;
+        justify-content: flex-end;
+        button{
+          margin-left: 2rem;
+        }
+      }
+  }
+  .location-section {
+    margin-top: 1rem;
+  }
+  .right-section {
+      .card { margin-bottom: 30px;
+          .card-header{
+           text-align: $left;  border-bottom: $grey-light solid 1px;  padding: 25px 20px 20px 20px;
+           h3{
+               font-weight: $font-weight-600;
+           }
+          }
+          .card-content {
+         padding: 20px;
+         .dis-text { font-weight: $font-weight-300; font-size: $fontsize-12; color: $grey-darkest; position: relative; top: -13px;}
+           .pwd-check-box {
+          margin-left: 20px;
+          display: inline-flex; width: 100%; 
+          align-items: center;
+          .pwd-check-box-text {
+            margin-left: 5px;
+            font-size: 10px;
+  }
+      }
+      }
+  
+          .card-footer {
+             .review { text-decoration: $none; color:$secondary-blue;  font-size: $fontsize-14; font-weight: $font-weight-600;}
+          } 
+      }
+  }
+  
+  @media (max-width: 950px) {
+    .row {
+      .col {
+        float: none;
+        width :100%;
+        .customer-profile-actions {
+          margin-top: 20px;
+        }
+      }
+    }
+
+  }
+
+  @media(max-width: 500px) {
+  }
+
+  .background {
+		height: 20rem;
+		width: 100%;
+		background-color: $primary-violet;
+		h2 {
+			margin-left: 9rem;
+			color: white;
+			padding: 1rem .3rem .3rem .3rem;
+			font-weight: 500;
+		}
+  }
+  
+  .container{
+		position: relative;
+    bottom: 11rem;
+	}
+}

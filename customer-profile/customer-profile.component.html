@@ -1,0 +1,144 @@
+<div class="container customer-portal-profile" *ngIf="currentLoggedInCustomer">
+  <div class="background"></div>
+  <div class="container">  
+  <div class="row">
+    <div class="col col-5">
+      <div class="card" >
+        <div class="card-header profile-image-section">
+          <div class="image-wrap">
+            <img class="profile-image" [appLoadImage]="currentLoggedInCustomer.imageId" alt="">
+            <div class="edit-icon-wrap" (click)="editProfileModalOpen = true">
+              <img class="edit-icon-img" src="/assets/icons/camera-grey.svg" alt="">
+            </div>
+          </div>
+          <h2>{{ currentLoggedInCustomer.firstName}} {{ currentLoggedInCustomer.lastName}}</h2>
+        </div>
+        <!-- <div class="rating-section">
+          <app-rating-stars [float]="true" readonly="true" value=4.5>
+          </app-rating-stars>
+          <span class="rating-point"> 6 </span>
+        </div> -->
+        <!-- <div class="card-content">
+          <div class="list">
+            <ul>
+              <li>
+                <div class="icon">
+                  <img
+                    [src]="currentLoggedInCustomer.customerVerified ? '/assets/icons/check-circle-blue.svg' : '/assets/icons/tick-fail.svg'" />
+                </div>
+                Verified
+              </li>
+              <li>
+                <div class="icon">
+                  <img
+                    [src]="currentLoggedInCustomer.customerContactDetailsVerified ? '/assets/icons/check-circle-blue.svg' : '/assets/icons/tick-fail.svg'" />
+                </div>
+                Contact Details
+              </li>
+              <li>
+                <div class="icon">
+                  <img
+                    [src]="currentLoggedInCustomer.customerPaymentDetailsVerified ? '/assets/icons/check-circle-blue.svg' : '/assets/icons/tick-fail.svg'" />
+                </div>
+                Payment Details
+              </li>
+            </ul>
+          </div>
+        </div> -->
+        <!-- <div class="card-footer">
+          <a routerLinkActive="active" routerLink="public-profile" class="review">View
+            public profile</a>
+        </div> -->
+      </div>
+      <div class="card location-section" *ngIf="currentLoggedInCustomer.homeAddress">
+        <div class="card-header">
+            <h3>Location</h3>
+          </div>
+          <div class="card-content">
+            <app-location [location]="currentLoggedInCustomer.homeAddress" [showDiscription]="false"></app-location>
+          </div>
+      </div>
+    </div>
+    <div class="col col-7 pull-right right-section">
+      <!-- <div class="customer-profile-actions">
+        <h2>My details</h2>
+      </div> -->
+      <div class="card">
+        <div class="card-header">
+          <h3>Required details</h3>
+        </div>
+        <div class="card-content">
+          <form [formGroup]="customerProfileFG" (submit)="submitProfile()">
+            <app-input-basic label="FIRST NAME" [fc]="customerProfileFG.get('firstName')" icon="perm-identity-violet">
+            </app-input-basic>
+            <app-input-basic label="LAST NAME" [fc]="customerProfileFG.get('lastName')" icon="perm-identity-violet">
+            </app-input-basic>
+            <app-input-basic label="EMAIL ADDRESS" [fc]="customerProfileFG.get('email')" icon="email-violet">
+            </app-input-basic>
+            <p class="dis-text">We will only share your email once you have accepted a job with a business</p>
+            <app-input-basic label="MOBILE NUMBER" [fc]="customerProfileFG.get('phone')" icon="phone-violet">
+            </app-input-basic>
+            <p class="dis-text">We will only share your mobile number once you have accepted a job with a business
+            </p>
+            <!-- <app-input-basic label="ADDRESS" [fc]="customerProfileFG.get('homeAddress')" icon="location-violet">
+            </app-input-basic> -->
+            <app-location-input label="Location" [fc]="customerProfileFG.get('homeAddress')" [placeholder]="locationPlaceHolder || 'Start typing address'" icon="location-violet">
+            </app-location-input>
+          </form>
+          <div class="submit">
+              <button class="primary" (click)="goBack()"> Back</button>
+              <button class="primary" (click)="submitProfile()"> Save changes</button>
+            </div>
+        </div>
+        
+       
+      </div>
+      <!-- <div class="card">
+        <div class="card-header">
+          <h3>Account details</h3>
+        </div>
+        <div class="card-content">
+          <div class="add-vehicle-content add-vehicle-content-detail addVehicle">
+            <div class="add-vehicle-content addVehicle-block">
+              <form [formGroup]="changePasswordFG" (submit)="submitPassword()">
+                <app-input-basic label="CURRENT PASSWORD" [fc]="changePasswordFG.get('currentPassword')"
+                  placeholder="Type your current password" icon="lock-violet">
+                </app-input-basic>
+                <app-input-basic label="NEW PASSWORD" type="password" [fc]="changePasswordFG.get('newPassword')"
+                  placeholder="********" icon="lock-violet">
+                </app-input-basic>
+                <app-input-basic label="CONFIRM NEW PASSWORD" type="password"
+                  [fc]="changePasswordFG.get('confirmNewPassword')" placeholder="********" icon="lock-violet"
+                  marginBottom="15px">
+                </app-input-basic>
+                <div class="pwd-check-box">
+                  <img *ngIf="pwdLength" src="/assets/icons/tick-ok.svg" alt="">
+                  <img *ngIf="!pwdLength" src="/assets/icons/tick-fail.svg" alt="">
+                  <div class="pwd-check-box-text">At least 6 characters</div>
+                </div>
+                <div class="pwd-check-box">
+                  <img *ngIf="pwdChar" src="/assets/icons/tick-ok.svg" alt="">
+                  <img *ngIf="!pwdChar" src="/assets/icons/tick-fail.svg" alt="">
+                  <div class="pwd-check-box-text">Contain letters, numbers and special characters</div>
+                </div>
+                <div class="pwd-check-box">
+                  <img *ngIf="pwdMatch" src="/assets/icons/tick-ok.svg" alt="">
+                  <img *ngIf="!pwdMatch" src="/assets/icons/tick-fail.svg" alt="">
+                  <div class="pwd-check-box-text">Match</div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button class="primary add-vehicle-btn" (click)="submitPassword()">
+            Change Password
+          </button>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</div>
+</div>
+
+<app-edit-profile-photo *ngIf="editProfileModalOpen" [originalImageId]="currentLoggedInCustomer.imageId" [editProfileModalOpen]="editProfileModalOpen" (close)="closeProfileUploadModal($event)"></app-edit-profile-photo>

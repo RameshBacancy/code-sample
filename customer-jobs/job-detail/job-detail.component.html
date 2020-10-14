@@ -1,0 +1,121 @@
+<div class="job-detail">
+    <div class="tender-header">
+      </div>
+      
+      <div class="container tender" *ngIf="tender">
+        <app-go-back></app-go-back>
+        <div class="card info">
+          <div class="tender-title">Tender #{{displayTenderId}}</div>
+      
+          <div class="detail" *ngIf="tender">
+              <div class="user-img" *ngIf="!tender.from.imageThumbnail"></div>
+              <div class="user-img" *ngIf="tender.from.imageThumbnail">
+                <img class="customer-user thumbnail" [src]="tender.from.imageThumbnail" alt="">
+              </div>
+            <div class="customer" *ngIf="tender.resource">
+              <div class="name">{{tender.from.firstName}}</div>
+              <div class="vehicle" >{{tender.resource.make}} {{tender.resource.model}}</div>
+              <div class="vehicle" >{{tender.resource.registrationNumber}} </div>
+              <div class="vehicle" *ngIf="tender.resource.odometerReading">{{tender.resource.odometerReading}}km</div>
+              <div class="vehicle" >{{tender.resource.fuelType}}</div>
+
+            </div>
+            <div class="tender-info">
+              <div class="item">
+                <img src="/assets/icons/setting-violet.svg" alt="">
+                <div class="content">{{tender.serviceType === 'Other' ? tender.otherService : tender.serviceType}}</div>
+              </div>
+              <div class="item">
+                <img src="/assets/icons/location-violet.svg" alt="">
+                <div class="content">{{tender.address.city}} {{tender.address.state}}</div>
+              </div>
+              <div class="item">
+                <img src="/assets/icons/calendar-violet.svg" alt="">
+                <div class="content" *ngIf="tender.timeframe === 'certainDate'">{{ tender.requestedTime | date : 'dd/MM/yyyy' }}</div>
+                <div class="content" *ngIf="tender.timeframe !== 'certainDate'">{{ tender.timeframe === 'flexible' ? 'Flexible' : tender.timeframe.toUpperCase() }}</div>
+              </div>
+            </div>
+            <div class="tender-description" >
+              <div *ngIf="tender.additionalComments">
+                  <div class="heading" >COMMENTS FROM CUSTOMER</div>
+                  <div class="content">{{tender.additionalComments}}
+                  </div>
+              </div>
+              
+              <div class="heading">TIME LEFT ON TENDER</div>
+              <div class="content" *ngIf="tender.status !== 'completed' && tender.status !== 'reviewed'">{{tender.status === 'open' ? (tender.tenderClosed ? 'CLOSED' : tender.timeleftOnTender) : tender.status.toUpperCase()}}</div>
+              <div class="content" *ngIf="tender.status === 'completed' || tender.status === 'reviewed'">Closed</div>
+              <div class="heading">Date In</div>
+              <div class="content" *ngIf="tenderQuotation">{{ tenderQuotation['date'].begin | date}}</div>
+              <div class="heading">Estimated Date out</div>
+              <div class="content" *ngIf="tenderQuotation">{{ tenderQuotation['date'].end | date}}</div>
+              <button type="submit" class="primary" *ngIf="tender.tenderClosed && tender.status === 'open'" (click)="renewModalOpen= true">Renew</button>
+            </div>
+          </div>
+        </div>
+        <div class="card map">
+          <agm-map [latitude]="defaultMapCords.lat" [longitude]="defaultMapCords.lng" [zoom]="10">
+            <agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.lat" [longitude]="m.lng"
+              [markerDraggable]="m.draggable" [iconUrl]="icon" [label]="{color: 'white', text: m.label,labelClass:'agm-label-marker'}" (markerClick)="onMarkerClick(m)">
+            </agm-marker>
+          </agm-map>
+        </div>
+        <div class="card quotes" [hidden]="!dataLength">
+          <div class="tender-title">
+            {{dataLength}} Job Offers
+          </div>
+          <table mat-table matSort [dataSource]="quotesDataSource" [hidden]="!dataLength">
+            <ng-container matColumnDef="Business">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Business</th>
+              <td mat-cell *matCellDef="let element">
+                <div class="service-type">
+                  <div class="service-type-icon-container">
+                    <img *ngIf="['Logbook service', 'Basic', 'Other'].indexOf(element.serviceType) !== -1"
+                      class="setting-icon" src="assets/icons/setting-violet.svg" alt="">
+                    <!-- <img src="assets/icons/car-violet.svg" alt=""> -->
+                  </div>
+                  <div class="service-type-info">
+                    <div class="service-type-text">{{element.business.businessName}}</div>
+                    <div>{{element.vehicle}}</div>
+                  </div>
+                </div>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="Service">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Service</th>
+                <td mat-cell *matCellDef="let element">{{element.business.fixedOrMobile}}</td>
+            </ng-container>
+            <ng-container matColumnDef="Location">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Location</th>
+              <td mat-cell *matCellDef="let element">{{element.business.mainAddress.street}} {{element.business.mainAddress.state}}</td>
+            </ng-container>
+            <ng-container matColumnDef="Quote">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Quote</th>
+                <td mat-cell *matCellDef="let element">${{element.estimatedAmount}}</td>
+              </ng-container>
+            <ng-container matColumnDef="Date Submitted">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Offered</th>
+              <td mat-cell *matCellDef="let element">{{element?.date.begin | date:'dd/MM/yyyy' }} To {{element?.date.end | date:'dd/MM/yyyy' }}</td>
+            </ng-container>
+            
+            <ng-container matColumnDef="Quotes">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Quotes</th>
+              <td mat-cell *matCellDef="let element">
+                <button class="primary custom">View Quote</button>
+              </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index;" class="clickable"
+              [class.selected]="selectedRowIndex === i" (click)="selectRow(row, i)"></tr>
+          </table>
+        </div>
+        <div class="qustions">
+      
+        </div>
+      </div>
+</div>
+
+<app-renew-tender *ngIf="tender" [renewModalOpen]="renewModalOpen" (close)="closeReviewModal($event)" [tender]="tender"></app-renew-tender>
+<app-customer-review *ngIf="isJobRevieweModalOpen" [open]="isJobRevieweModalOpen" (submitReview)="submitReview($event)"
+(close)="isJobRevieweModalOpen = false">
+</app-customer-review>

@@ -1,0 +1,99 @@
+@import 'src/assets/scss/index';
+.card.jobs-widget {
+	min-height: 18rem;
+	.card-header {
+		padding: 1rem;
+		text-align: $center;
+		h3 {
+			color: $grey-darkest;
+			font-size: $fontsize-18;
+			font-weight:$font-weight-600;
+		}
+	}
+	.content {
+		text-align: $center; 
+		img {
+			margin: 1.5rem 0px;
+		}
+		.not-found {
+			padding: 2rem 0;
+			color: $grey-darkest;
+			font-size: $fontsize-14;
+			font-weight: $font-weight-300;
+			margin-bottom:1.5rem;
+			margin-top: .8rem;
+		}
+		ul.jobslist{
+			margin: 0px; padding: 0px;
+			li {list-style: none; border-bottom: $grey-light solid 1px; padding: 1rem 3rem 1rem 2.1rem; background-repeat:no-repeat;
+				text-align: $left; background-position: center right 30px;
+				display: flex;
+				cursor: pointer;
+				.quotes{
+					margin-right: 1.5rem;
+					text-align: center;
+					.count{
+						font-size: 1.8rem;
+						margin-bottom: .3rem;
+						font-weight: bold;
+					}
+					.text{
+						font-size: .8rem;
+					}
+				}
+				
+			h3 { color:$grey-darkest; font-size: $fontsize-18; font-weight: $font-weight-500;}
+			p{ color:$grey-darkest; font-weight: $font-weight-300; font-size: $fontsize-14; margin-bottom: 0px;}
+			}
+		}
+		.pill-box {
+			height: 48px;
+			border: 1px solid $primary-button-disabled;
+			border-radius: 8px;
+			background-color: white;
+			display: inline-flex;
+			justify-content: space-between;
+			.option {
+			  display: inline-flex;
+			  justify-content: space-around;
+			  align-items: center;
+			  width: 100%;
+			  height: 38px;
+			  padding: 0 12px;
+			  margin: 4px 0 5px 5px;
+			  border-radius: 8px;
+			  border: 1px solid transparent;
+			  color: $primary-blue;
+			  white-space: nowrap;
+			  cursor: pointer;
+			  @include notHighlightable();
+			  font-weight: 500;
+			  &.selected {
+				background-color: $primary-violet;
+				border: 1px solid $primary-violet;
+				color: white;
+			  }
+			  &.last {
+				margin-right: 5px;
+			  }
+			}
+			&.error-box {
+			  border-color: $error !important;
+			}
+		  }
+		  .pill-selector-job {
+			width: 425px;
+		  }
+	}
+	.card-footer {
+		padding: 1rem;
+		text-align: $center;
+		a { color: $secondary-blue; font-size: $fontsize-14; font-weight: $font-weight-500; text-decoration: none;}
+		button {
+			@include border-radius(1.7rem);
+			width: $lg-button;
+		}
+	}
+.min-height {min-height: 244px;}
+
+}

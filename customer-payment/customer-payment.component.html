@@ -1,0 +1,5 @@
+<app-payment *ngIf="isLoaded && isValid" [tenderId]="tenderId" [quoteId]="quoteId" [orderSummary]="quote" (accept)="setChargeData($event)"></app-payment>
+
+<app-tender-accept-reason [open]="openAcceptModal"  *ngIf="quote" (close)="openAcceptModal = false" [modalTitle]="quote.business.businessName"
+  (acceptQuote)="acceptQuote($event)">
+</app-tender-accept-reason>

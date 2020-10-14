@@ -1,0 +1,6 @@
+@import 'src/assets/scss/index.scss';
+
+.customer-portal-content {
+  height: calc(100vh - #{$header-size});
+  overflow-y: auto;
+}

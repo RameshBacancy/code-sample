@@ -1,0 +1,170 @@
+<div class="jobs-business-profile">
+    <app-cover-photo *ngIf="quote" [coverPhotoId]="quote.business['coverPhotoId']" [userId]="quote['businessId']" userType="business" [isEditable]="false"></app-cover-photo>
+    <div class="container business-profile" *ngIf="quote">
+      <app-go-back></app-go-back>
+      <div class="row">
+        <div class="col col-6 col-sm-12 col-xs-12">
+          <div class="card">
+            <div class="profile-info">
+              <div class="profile-pic">
+                <div class="business-img">
+                  <img [appLoadImage]="quote.business.imageId" alt="">
+                </div>
+              </div>
+              <div class="business-name">
+                {{quote.business.businessName}}
+              </div>
+            </div>
+            <div class="information">
+              <div class="point-of-contact">
+                <div class="head">
+                  <img src="assets/icons/adjust-24px.svg">
+                  <span class="heading">Point of contact</span>
+                </div>
+                <div class="content">{{quote.business.firstName}} {{quote.business.lastName}}</div>
+              </div>
+              <div class="address">
+                <div class="head">
+                  <img src="assets/icons/location-pointer.svg">
+                  <span class="heading">Address</span>
+                </div>
+                <div class="content">{{quote.business.mainAddress.fullAddress}}</div>
+              </div>
+              <div class="contact">
+                <div class="head">
+                  <img src="assets/icons/phone-violet.svg">
+                  <span class="heading">Contact number</span>
+                </div>
+                <div class="content">{{quote.business.phone}}</div>
+              </div>
+              <div class="map">
+                <div class="head">
+                  <img src="assets/icons/map-location.png">
+                  <span class="heading">Google maps of location</span>
+                </div>
+                <div class="map-icon">
+                  <agm-map [latitude]="defaultMapCords.lat" [longitude]="defaultMapCords.lng" [zoom]="12">
+                    <agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.lat" [longitude]="m.lng"
+                      [markerDraggable]="m.draggable" iconUrl="/assets/icons/location-pointer.svg"
+                      [label]="{color: 'black', text: m.label,labelClass:'agm-label-marker'}"
+                      (markerClick)="onMarkerClick(m)">
+                    </agm-marker>
+                  </agm-map>
+                </div>
+              </div>
+            </div>
+            </div>
+          <div class="details">
+            <app-vehicle-details-card [vehicleDetail]="quote.tender.resource"></app-vehicle-details-card>
+          </div>
+        </div>
+        <div class="col col-4 col-sm-12 col-xs-12">
+          <div class="order-summary">
+            <div class="card">
+                <div class="title">Order Summary</div>
+                <div class="order">
+                    <div class="service-type">
+                        <div class="heading">Type of service</div>
+                        <div class="content">{{quote.tender.serviceType}}</div>
+                    </div>
+                    <div class="estimated-date">
+                      <div class="inner-section"> 
+                        <span class="heading">Date in</span>
+                        <span class="heading">Estimated Date out</span>
+                      </div>                  
+                      <div class="date">
+                        <span class="content">{{ quote["date"].begin | date:'dd/MM/yyyy'}}</span>
+                        <span class="content">{{ quote["date"].end | date:'dd/MM/yyyy'}}</span>
+                      </div>
+                    </div>
+                    <div class="total">
+                      <span class="heading">Service fee</span>
+                      <span class="content">$ {{quote.estimatedAmount}}</span>
+                    </div>
+                    <div class="transaction-amount">
+                      <span class="heading">Transaction fee</span>
+                      <span class="content">$ {{transactionFee}}</span>
+                    </div>
+                    <div class="additional-service">
+                      <div class="heading">Additional Services</div>
+                      <div class="service" *ngFor="let service of quote.additionalServices">
+                        <span class="content">{{service.name}}</span>
+                        <span class="price">$ {{service.amount}}</span>
+                      </div>
+                  </div>
+                </div>
+                <div class="total-amount">
+                    <div class="heading">Total</div>
+                    <div class="content">$ {{totalAmount}}</div>
+                </div>
+            </div>
+            <div class="btn">
+              <button type="submit" class="primary mb-65 message-btn" (click)="messageToMechanic()">Message mechanic</button>
+              <button type="submit" class="primary mb-65 cancel-btn" (click)="canceledBooking()">Cancel booking</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="messagepopup">
+      <app-modal-panel modalTitle="MESSAGE MECHANIC" *ngIf="messageModalOpen" [open]="messageModalOpen"
+        (close)="closeMessageModal()">
+        <div class="message-mechanic">
+          <div class="message-title">
+            <h3>Send a message to the mechanic</h3>
+          </div>
+          <div>
+            <form [formGroup]="messageFG" class="quotes-form">
+              <div class="message">
+                <app-textaria-basic placeholder="Write the reason" type="text" formControlName="message"
+                  [rows]="4" [cols]="10" [group]="messageFG" name="message">
+                  <div rx-error
+                    *ngIf="submittedMessage && g.message.errors || (messageFG.get('message').invalid && (messageFG.get('message').dirty || messageFG.get('message').touched))">
+                    Enter the message is required</div>
+                </app-textaria-basic>
+              </div>
+              <div class="message-btn">
+                <div class="back">
+                  <button type="submit" class="secondary-transparent mb-65" (click)="backTotheOrderSummary()">
+                    Back
+                  </button>
+                </div>
+                <div class="submit-message-btn">
+                  <button type="submit" class="primary mb-65" (click)="submitMessage()">
+                    SUBMIT MESSAGE
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </app-modal-panel>
+      <app-confirm-modal [businessQuoteFlag]="true" [confirmModalOpen]="confirmationModel"
+        (close)="closeConfirmationModel()">
+        <div class="popup-modal">
+          <div class="confirm-text">Your message was sent to the mechanic</div>
+        </div>
+      </app-confirm-modal>
+        <app-confirm-modal [businessQuoteFlag]="true" [confirmModalOpen]="cancelBooking" (close)="cancelBooking = false">
+          <div class="popup-modal">
+            <div class="confirm-text">Are you sure you want to cancel?</div>
+            <div class="confirm-text">Remember to pay 15% penalty.</div>
+            <div class="confirm-button">
+              <div class="cancel-btn">
+                <button class="secondary-transparent mb-65" (click)="cancelBookingOrder()">Cancel</button>
+              </div>
+              <div class="confirm-btn">
+                <button class="primary mb-65" (click)="confirmCancelBookingOrder()">Confirm</button>
+              </div>
+            </div>
+          </div>
+        </app-confirm-modal>
+        <app-confirm-modal [businessQuoteFlag]="true" [confirmModalOpen]="confirmCancellationModel"
+          (close)="closeConfirmCancellationModel()">
+          <div class="popup-modal">
+            <div class="confirm-text">Your cancellation was sent to the mechanic</div>
+          </div>
+        </app-confirm-modal>
+    </div>
+</div>
+      

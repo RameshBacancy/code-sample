@@ -1,0 +1,47 @@
+<div class="card jobs-widget">
+  <div class="card-header">
+    <h3>My jobs</h3>
+  </div>
+
+  <div class="content" *ngIf="!tenders.length">
+    <!-- <img src="/assets/images/my_jobs.png" alt=""> -->
+    <p class="not-found">
+      You currently don’t have any upcoming jobs
+    </p>
+  </div>
+
+  <div class="content min-height" *ngIf="tenders.length">
+    <div class="pill-box pill-selector-job">
+      <div *ngFor="let opt of statusOptions; let last = last;" [class.last]="last"
+        [class.selected]="filterFC.value === opt.value" class="option" (click)="filterTender(opt.value)">{{opt.name}}
+      </div>
+    </div>
+    <ul class="jobslist">
+      <ng-container *ngFor="let tender of tenderSearch; let i = index;">
+        <li *ngIf="i < 3" (click)="goToJobDetail(tender._id)" [style.background-image] = "this.tenders.filter === 'open'? img : this.tenders.filter === 'booked'? img : img">
+              <div class="quotes">
+                  <div class="count">
+                    {{tender.numberOfQuotes}} 
+                  </div>
+                  <div class="text">Quote(s)</div>
+                </div>
+            <div>
+                <h3>{{tender.serviceType === 'Other' ? tender.otherService : tender.serviceType}}</h3>
+                <p *ngIf="tender.resource">{{tender.resource.name ? tender.resource.name : tender.resource.make+' '+tender.resource.model}}</p>
+            </div>
+        </li>
+      </ng-container>
+
+    </ul>
+  </div>
+  <!-- <div class="card-footer" *ngIf="!tenders.length">
+      <button class="primary" (click)="scrollTop()">
+          Book in for a service
+      </button>
+  </div> -->
+  <div class="card-footer" *ngIf="tenders.length">
+    <a routerLinkActive="active" (click)="goToAppropriateJob()">
+      View All
+    </a>
+  </div>
+</div>

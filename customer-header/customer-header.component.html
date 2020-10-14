@@ -1,0 +1,48 @@
+<div class="customers-header">
+    <div class="customer-header-fill"></div>
+    <header class="customer-header">
+      <div class="left-side">
+        <img class="logo" (click)="toDashboard()" src="/assets/icons/2moto-logo-black.svg">
+      </div>
+      <div class="right-side">
+        <div class="menu-link" routerLinkActive="active" routerLink="/customer-portal/my-vehicles">
+          <div class="desktop">My Vehicles</div>
+          <img class="mobile" src="/assets/icons/car-header.svg">
+        </div>
+        <div class="menu-link" routerLinkActive="active" routerLink="/customer-portal/my-jobs">
+          <div class="desktop">My Jobs</div>
+          <img class="mobile" src="/assets/icons/content-paste-violet.svg">
+        </div>
+        <div class="communications chat" (click)="openMessageModal()" (clickOutside)="openMessageWindow = false">
+          <img class="communications-icon" src="/assets/icons/forum-violet.svg">
+          <span class="number" *ngIf="messages.length">{{messages.length}}</span>
+          <div class="card-position" *ngIf="openMessageWindow">
+            <app-message-header-dropdown></app-message-header-dropdown>
+          </div>
+        </div>
+
+        <app-notification-header [notifications]="notifications" [isOpenNotificationWindow] = "openNotificationWindow" (openNotificationModalValue)="openNotificationModal()" 
+          (closeNotificationModalValue)="openNotificationWindow = false">
+            <app-notification-header-dropdown [userType]="userType" (showNotificationModel)="showAllNotification($event)"></app-notification-header-dropdown>
+        </app-notification-header>
+
+        <div class="customer-menu" (click)="openMenu()" (clickOutside)="customerMenu = false">
+          <div class="pic" *ngIf="!userInfo">
+          </div>
+          <div class="pic" *ngIf="userInfo">
+            <img class="thumbnail" *ngIf="userInfo.imageThumbnail" alt="" [src]="userInfo.imageThumbnail">
+          </div>
+          <div *ngIf="customerMenu" class="customer-dropdown">
+            <ul>
+              <li routerLink="/customer-portal/my-profile"><a routerLinkActive="active" >My Profile</a></li>          
+              <li (click)="logout()"><a>SIGN OUT</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+</div>
+<!-- Added pop-up model for show all notification on click of view all notifiaction from notification hedaer-->
+<app-modal-panel *ngIf="showCustomerNotification" class="model-overflow" modalTitle="Show all notifications" [open]="showCustomerNotification" (close)="closeModal()">
+  <app-notification [userType]="'customer'" (showAllNotification) = "closeModal()"></app-notification>
+</app-modal-panel>

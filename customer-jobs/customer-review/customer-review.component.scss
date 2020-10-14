@@ -1,0 +1,208 @@
+@import "src/assets/scss/index";
+
+.modal-panel-shade.customer-review {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 10;
+
+  .modal-panel {
+    background-color: white;
+    border-radius: 8px;
+
+    .modal-top-bar {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      border-bottom: 1px solid $primary-button-disabled;
+      height: 150px;
+      background-color: #685df6;
+
+
+      .avatar-logo {
+        margin-left: 4.075rem;
+      }
+
+      .modal-title {
+        display: flex;
+        flex-direction: column;
+        font-family: Montserrat;
+        padding: 0 2rem;
+
+        h3 {
+          white-space: nowrap;
+          color: $primary-blue;
+          font-weight: 500;
+          color: #ffffff;
+          font-size: 1.8rem;
+          font-weight: bold;
+          line-height: 2.5rem;
+        }
+
+        .rating-readonly {
+          display: flex;
+          align-items: center;
+          width: 100%;
+          padding: .5rem 0;
+        }
+
+        .review-count {
+          font-size: 1.14rem;
+          line-height: 1.43rem;
+          font-weight: 100;
+          color: #FFFFFF;
+          padding-left: .75rem;
+        }
+      }
+    }
+
+    .modal-content {
+      max-height: calc(100vh - 80px);
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 2rem;
+
+      .review-more {
+        color: #009AE0;
+        font-family: Montserrat;
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: 1rem;
+        padding-bottom: 3.45rem;
+        cursor: pointer;
+      }
+
+      .input-form {
+        margin: 10% !important;
+        width: 100%;
+      }
+
+      .badges-container {
+        display: flex;
+        flex-direction: column;
+        padding-top: 3rem;
+
+        .badges {
+          display: flex;
+          justify-content: space-between;
+
+          .badge {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 18%;
+
+            .badge-img {
+              width: 70px;
+              height: 70px;
+              cursor: pointer;
+              position: relative;
+
+              .selected {
+                width: 30px;
+                height: 30px;
+                position: absolute;
+                bottom: 0;
+                right: -3px;
+              }
+
+              img {
+                width: 100%;
+              }
+            }
+
+            span {
+              text-align: center;
+              padding-top: .5rem;
+            }
+          }
+        }
+      }
+
+      .actions {
+        padding-top: 2rem;
+        display: flex;
+        justify-content: flex-end;
+        button{
+          margin-left: 2rem;
+          
+        }
+      }
+    }
+  }
+
+    .violet-bg-star .star-icon:before {
+        color: #685df6 !important;
+    }
+  &.open {
+    display: flex;
+  }
+  .avatar-logo {
+    border-radius: 100px;
+    height: 80px;
+  }
+  
+  
+    .star-icon:before {
+      color: rgb(255, 255, 255) !important;
+      content: attr(data-icon) " ";
+      position: absolute;
+      left: 0;
+      overflow: hidden;
+      width: 0;
+    }
+  
+    .label,
+    .control-label {
+      margin-top: 0;
+      margin-bottom: 10px;
+      white-space: nowrap;
+      font-weight: bold;
+      font-size: 21px;
+      margin-right: 10%;
+      font-family: Montserrat;
+      font-size: 18px !important;
+      font-weight: 500 !important;
+      line-height: 23px !important;
+    }
+  
+    span.rating.readonly {
+      cursor: default;
+      font-size: 1.25rem;
+    }
+  
+    span.rating[_ngcontent-c11] {
+      cursor: pointer;
+    }
+  
+    span.rating {
+      font-size: 1.43rem;
+    }
+  
+    span.ng-star-inserted {
+      padding: 0.25rem;
+    }
+  
+    .violet-bg-star .star-icon:before {
+      color: #685df6 !important;
+    }
+  
+  
+  
+  .btn-outline {
+    background-color: white;
+    border: 3px solid #685DF6;
+    border-radius: 25px;
+    margin-left: 5%;
+    height: 50px !important;
+    width: 124px !important;
+  }
+}
+
+

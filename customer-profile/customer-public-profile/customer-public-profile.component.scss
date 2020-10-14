@@ -1,0 +1,263 @@
+@import 'src/assets/scss/index';
+.customer-public-profile{
+    .vehicle-actions {
+        display: inline-flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: $center;
+        margin-bottom: 20px;
+    
+        .search-vehicles {
+            display: inline-flex;
+    
+            .add-vehicle-btn {
+                margin-left: 20px;
+            }
+        }
+    }
+    
+    .card {
+        .card-header {
+            padding: 15px;
+            text-align: $center;
+    
+            img {
+                width: 120px;
+                height: 120px;
+                @include border-radius(50%);
+                margin-bottom: 10px;
+            }
+    
+            h2 {
+                color: $grey-darkest;
+                font-size: $fontsize-18;
+                line-height: 18px;
+                font-weight: $font-weight-600;
+            }
+        }
+    
+        .rating-section {
+            border-top: $grey-light solid 1px;
+            border-bottom: $grey-light solid 1px;
+            padding: 10px 15px;
+            margin: 0px 0px;
+    
+            .rating-point {
+                text-decoration: underline;
+                color: $primary-green;
+                margin-left: 5px;
+            }
+    
+            .rating-summary {
+                float: $right;
+                font-size: 11px;
+                color: $grey-darkest;
+                font-style: italic;
+                font-weight: $font-weight-300;
+            }
+        }
+    
+        .card-content {
+            padding: 15px;
+            border-bottom: $grey-light solid 1px;
+    
+            .list {
+                display: block;
+    
+                ul {
+                    margin: 0px;
+                    padding: 0px;
+    
+                    li {
+                        list-style: $none;
+                        margin: 5px 0px;
+                        width: 100%;
+                        display: inline-flex;
+                        align-items: center;
+    
+                        .icon {
+                            width: 24px;
+                            height: 24px;
+                            margin-right: 15px;
+                        }
+                    }
+                }
+            }
+        }
+    
+        .card-footer {
+            text-align: $center;
+            padding: 20px 0px;
+    
+            .review {
+                text-decoration: $none;
+                color: $secondary-blue;
+                font-size: $fontsize-14;
+                font-weight: $font-weight-600;
+            }
+        }
+    }
+    
+    .right-section {
+        .card {
+            .card-header {
+                text-align: $left;
+                margin-bottom: 15px;
+                border-bottom: $grey-light solid 1px;
+                padding: 25px 15px;
+    
+                h3 {
+                    font-weight: $font-weight-600;
+                }
+            }
+    
+            .card-content {
+                padding-top: 0px;
+                padding-bottom: 0px;
+                padding: 0px;
+                border-bottom: none;
+    
+                .user-list {
+                    margin: 0px;
+                    padding: 0px;
+    
+                    li {
+                        margin-bottom: 15px;
+                        list-style: none;
+                        position: relative;
+                        border-bottom: $grey-light solid 1px;
+                        padding-top: 0px;
+                        padding-left: 20px;
+                        padding-right: 20px;
+    
+                        .user-pic {
+                            width: 60px;
+                            height: 60px;
+                            @include border-radius(50%);
+                            position: absolute;
+                            top: 0px;
+                        }
+    
+                        .profile-content {
+                            padding: 0px 5px 5px 80px;
+    
+                            h2 {
+                                color: #152935;
+                                font-size: 16px;
+                                font-weight: 600;
+                            }
+    
+                            h3 {
+                                font-weight: $font-weight-300;
+                                font-size: $fontsize-14;
+                                color: $grey-darkest;
+                            }
+    
+                            .date {
+                                font-weight: $font-weight-300;
+                                font-size: $fontsize-12;
+                                color: $grey-darkest;
+                                line-height: 17px;
+                                text-transform: uppercase;
+                                padding: 0px 0px;
+                            }
+    
+                            .rating {
+                                padding: 5px 0px 0px
+                            }
+    
+                            p {
+                                padding: 10px 0px;
+                                line-height: 23px;
+                                font-weight: $font-weight-300;
+                                font-size: $fontsize-14;
+                                color: $grey-darkest;
+    
+                                .viewmore {
+                                    span {
+                                        font-weight: $font-weight-300;
+                                        font-size: $fontsize-14;
+                                        color: $grey-darkest;
+                                    }
+    
+                                    a {
+                                        color: $primary-green;
+                                        font-size: $fontsize-12;
+                                        font-weight: $font-weight-600;
+                                    }
+                                }
+                            }
+    
+                            .arrow-right {
+                                float: right;
+                                position: absolute;
+                                right: 25px;
+                                padding: 0px;
+                                top: 50%;
+                                margin-top: -15px;
+                                height: 25px;
+                            }
+                        }
+    
+                        .quote-text {
+                            width: 85px;
+                            text-align: $center;
+                            float: left;
+    
+                            h2 {
+                                color: $grey-darkest;
+                                font-size: 37px;
+                                font-weight: $font-weight-700;
+                            }
+    
+                            span {
+                                font-size: 11px;
+                                font-weight: $font-weight-300;
+                                color: $grey-darkest;
+                            }
+                        }
+                    }
+    
+                    li:last-child {
+                        margin-bottom: 0px;
+                    }
+                }
+            }
+    
+            .card-footer {
+                text-align: $center;
+                padding: 20px 0px;
+    
+                .review {
+                    text-decoration: $none;
+                    color: $secondary-blue;
+                    font-size: $fontsize-14;
+                    font-weight: $font-weight-600;
+                }
+            }
+        }
+    }
+    
+    .card-bottom-space {
+        margin-bottom: 30px;
+    }
+    
+    .ratingblock {
+        font-size: 12px;
+        display: inline-block;
+    }
+    
+     .ratingblock .star-icon {
+        margin: 0px 1px;
+        font-size: 12px;
+        display: inline-block;
+    }
+    
+    .rating-summary {
+        float: $right;
+        font-size: 11px;
+        color: $grey-darkest;
+        font-style: italic;
+        font-weight: $font-weight-300;
+    }
+}

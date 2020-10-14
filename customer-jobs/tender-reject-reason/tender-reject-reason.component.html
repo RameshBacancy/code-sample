@@ -1,0 +1,41 @@
+<div class="modal-panel-shade" [class.open]="open">
+    <div class="modal-panel" [style.min-width]="minWidth" [style.min-height]="minHeight">
+      <div class="modal-content">
+        <form [formGroup]="reasonFG">
+          <div class="heading-container">
+            <h2 class="main-title">You’ve chosen {{modalTitle}}</h2>
+            <h2 class="sub-title">Please select why you’ve rejected this tender.</h2>
+          </div>
+          <div class="badges">
+            <ng-container *ngFor="let badge of badges">
+              <div class="badge">
+                <div class="badge-img" (click)="handleReasonSelect(badge)">
+                  <img [appReviewImage]="badge" />
+                  <img *ngIf="badge === reasonFG.get('reason').value" class="selected"
+                    src="assets/icons/check-circle-violet.svg" alt="selected" />
+                </div>
+                <p class="sub-text">{{ badge }} </p>
+              </div>
+            </ng-container>
+          </div>
+  
+          <p class="action" (click)="showTextArea= true">Other</p>
+  
+          <app-textaria-basic *ngIf="showTextArea" label="" placeholder="" type="text" class="custom-textarea"
+            formControlName="otherReason" [rows]="4" [cols]="50" [group]="reasonFG" name="otherReason">
+          </app-textaria-basic>
+  
+  
+          <div class="actions">
+            <button type="submit" class="primary post-tender-btn" (click)="handleSubmit()">
+              Submit
+            </button>
+            <button (click)="handleClose()" type="submit" class="btn-outline">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

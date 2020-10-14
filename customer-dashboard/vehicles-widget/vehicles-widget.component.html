@@ -1,0 +1,35 @@
+<div class="card vehicle-widget">
+  <div class="card-header">
+    <h3>{{title}}</h3>
+  </div>
+  <div class="content" *ngIf="!vehicles.length">
+    <!-- <img src="/assets/images/my_vechicles.png" alt=""> -->
+    <p class="not-found">
+      You currently don’t have any vehicles added to your profile
+    </p>
+  </div>
+  <div class="content min-height" *ngIf="vehicles.length">
+
+    <ul class="vehicleslist">
+      <ng-container *ngFor="let vehicle of vehicles; let i = index;">
+        <li *ngIf="i < 3" (click)="goToVehicleDetail(vehicle._id)">
+            <h3>{{vehicle.make}} {{vehicle.model}}</h3>
+            <p>{{vehicle.registrationNumber}}</p>
+        </li>
+      </ng-container>
+      
+    </ul>
+  </div>
+  <div class="card-footer" *ngIf="!vehicles.length">
+    <button class="primary" (click)="vehicleModelOpen()">
+      {{buttontext}}
+    </button>
+  </div>
+  <div class="card-footer" *ngIf="vehicles.length">
+    <a routerLinkActive="active" routerLink="/customer-portal/my-vehicles">
+        View All
+    </a>
+  </div>
+</div>
+<app-add-vehicle [vehicleModalOpen]="vehicleModalOpen" (close)="vehicleModalOpen = false"
+  [addVehicle]="!vehicleModalOpen"></app-add-vehicle>

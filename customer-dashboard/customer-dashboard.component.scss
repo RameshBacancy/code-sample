@@ -1,0 +1,36 @@
+@import 'src/assets/scss/index.scss';
+
+.customer-dashboard{
+  .service-vehicle{
+    padding-top: 5rem !important;
+  }
+  .dashboard-body {
+    max-width: calc(#{$max-content-size});
+    margin: 0 auto;
+    .dashboard-widgets {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+      margin-top: 2rem;
+      .ad {
+        img {
+          width: 100%;
+        }
+      }
+      
+      .widget {
+        max-width: 500px;
+        width: 100%;
+        margin: 1.5rem;
+      }
+    }
+  }
+}
+
+
+@media (max-width: 930px) {
+  .customer-dashboard .widget {
+    max-width: 100% !important;
+  }
+}
