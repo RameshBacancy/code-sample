@@ -4,7 +4,6 @@
   </div>
 
   <div class="content" *ngIf="!tenders.length">
-    <!-- <img src="/assets/images/my_jobs.png" alt=""> -->
     <p class="not-found">
       You currently don’t have any upcoming jobs
     </p>
@@ -34,11 +33,6 @@
 
     </ul>
   </div>
-  <!-- <div class="card-footer" *ngIf="!tenders.length">
-      <button class="primary" (click)="scrollTop()">
-          Book in for a service
-      </button>
-  </div> -->
   <div class="card-footer" *ngIf="tenders.length">
     <a routerLinkActive="active" (click)="goToAppropriateJob()">
       View All
